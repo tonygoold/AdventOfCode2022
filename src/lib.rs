@@ -2,6 +2,7 @@ use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
+pub mod assignment;
 pub mod grid;
 pub mod point;
 pub mod rps;
