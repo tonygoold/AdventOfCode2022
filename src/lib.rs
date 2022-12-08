@@ -3,6 +3,7 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 pub mod assignment;
+pub mod comms;
 pub mod crane;
 pub mod grid;
 pub mod point;
