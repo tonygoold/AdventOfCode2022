@@ -50,3 +50,22 @@ pub fn read_uint_lists(path: &str) -> Vec<Vec<usize>> {
         vecs
     })
 }
+
+pub fn read_uint_grid(path: &str) -> grid::Grid<usize> {
+    let mut rows = 0;
+    let mut cols = 0;
+    let mut cells: Vec<usize> = Vec::new();
+    read_lines(path).for_each(|line| {
+        rows += 1;
+        if cols == 0 {
+            cols = line.len();
+        } else if cols != line.len() {
+            panic!("inconsistent grid width");
+        }
+        for c in line.chars() {
+            let d = c.to_digit(10).expect("not a digit") as usize;
+            cells.push(d);
+        }
+    });
+    grid::Grid::new_with_cells(cells, rows, cols)
+}

@@ -23,7 +23,7 @@ impl<T> Grid<T> {
         for y in 0..self.rows {
             let row = &self[y];
             for (x, cell) in row.iter().enumerate().take(self.cols) {
-                f((x, y), cell);
+                f((y, x), cell);
             }
         }
     }
@@ -66,6 +66,20 @@ impl<T> IndexMut<usize> for Grid<T> {
         let start = index * self.cols;
         let end = start + self.cols;
         &mut self.cells[start..end]
+    }
+}
+
+impl<T> Index<(usize, usize)> for Grid<T> {
+    type Output = T;
+
+    fn index(&self, index: (usize, usize)) -> &Self::Output {
+        &self.cells[index.0 * self.cols + index.1]
+    }
+}
+
+impl<T> IndexMut<(usize, usize)> for Grid<T> {
+    fn index_mut(&mut self, index: (usize, usize)) -> &mut Self::Output {
+        &mut self.cells[index.0 * self.cols + index.1]
     }
 }
 
