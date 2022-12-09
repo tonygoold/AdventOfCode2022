@@ -10,6 +10,7 @@ pub mod grid;
 pub mod point;
 pub mod rps;
 pub mod rucksack;
+pub mod snake;
 
 pub fn input_arg() -> String {
     env::args()

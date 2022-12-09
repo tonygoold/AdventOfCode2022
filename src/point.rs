@@ -19,6 +19,15 @@ impl<T> Point2D<T> {
     }
 }
 
+impl<T> Default for Point2D<T>
+where
+    T: Default,
+{
+    fn default() -> Self {
+        Self::new(T::default(), T::default())
+    }
+}
+
 impl<T> FromStr for Point2D<T>
 where
     T: FromStr<Err = ParseIntError>,
@@ -48,6 +57,15 @@ pub struct Point3D<T> {
 impl<T> Point3D<T> {
     pub fn new(x: T, y: T, z: T) -> Self {
         Self { x, y, z }
+    }
+}
+
+impl<T> Default for Point3D<T>
+where
+    T: Default,
+{
+    fn default() -> Self {
+        Self::new(T::default(), T::default(), T::default())
     }
 }
 
