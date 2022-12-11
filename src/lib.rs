@@ -5,6 +5,7 @@ use std::io::{BufRead, BufReader};
 pub mod assignment;
 pub mod cli;
 pub mod comms;
+pub mod cpu;
 pub mod crane;
 pub mod grid;
 pub mod point;
