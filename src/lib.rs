@@ -2,12 +2,14 @@ use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
+pub mod algo;
 pub mod assignment;
 pub mod cli;
 pub mod comms;
 pub mod cpu;
 pub mod crane;
 pub mod grid;
+pub mod monkey;
 pub mod point;
 pub mod rps;
 pub mod rucksack;
