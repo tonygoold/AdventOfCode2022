@@ -36,7 +36,7 @@ impl<T> Grid<T> {
         for y in 0..self.rows {
             let row = &self[y];
             for (x, cell) in row.iter().enumerate().take(self.cols) {
-                cells.push(f((x, y), cell));
+                cells.push(f((y, x), cell));
             }
         }
         Self::new_with_cells(cells, self.rows, self.cols)
@@ -113,6 +113,6 @@ impl<'a, T> Iterator for Iter<'a, T> {
             self.x = 0;
             self.y += 1;
         }
-        Some((x, y, item))
+        Some((y, x, item))
     }
 }

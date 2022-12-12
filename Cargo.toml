@@ -95,3 +95,11 @@ path = "src/bin/11/a.rs"
 [[bin]]
 name = "11b"
 path = "src/bin/11/b.rs"
+
+[[bin]]
+name = "12a"
+path = "src/bin/12/a.rs"
+
+[[bin]]
+name = "12b"
+path = "src/bin/12/b.rs"

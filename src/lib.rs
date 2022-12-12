@@ -9,6 +9,7 @@ pub mod comms;
 pub mod cpu;
 pub mod crane;
 pub mod grid;
+pub mod hill;
 pub mod monkey;
 pub mod point;
 pub mod rps;
@@ -70,6 +71,23 @@ pub fn read_uint_grid(path: &str) -> grid::Grid<usize> {
             let d = c.to_digit(10).expect("not a digit") as usize;
             cells.push(d);
         }
+    });
+    grid::Grid::new_with_cells(cells, rows, cols)
+}
+
+pub fn read_char_grid(path: &str) -> grid::Grid<char> {
+    let mut rows = 0;
+    let mut cols = 0;
+    let mut cells: Vec<char> = Vec::new();
+    read_lines(path).for_each(|line| {
+        rows += 1;
+        let mut cs: Vec<char> = line.chars().collect();
+        if cols == 0 {
+            cols = cs.len();
+        } else if cols != cs.len() {
+            panic!("inconsistent grid width");
+        }
+        cells.append(&mut cs);
     });
     grid::Grid::new_with_cells(cells, rows, cols)
 }
