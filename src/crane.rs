@@ -24,9 +24,9 @@ impl FromStr for Movement {
         let re = regex::Regex::new(r"move (\d+) from (\d+) to (\d+)")
             .expect("failed to build regex");
         let captures = re.captures(s).ok_or(ParseError::InvalidMovement)?;
-        let count: usize = *&captures[1].parse().map_err(|_| ParseError::InvalidMovement)?;
-        let from: usize = *&captures[2].parse().map_err(|_| ParseError::InvalidMovement)?;
-        let to: usize = *&captures[3].parse().map_err(|_| ParseError::InvalidMovement)?;
+        let count: usize = captures[1].parse().map_err(|_| ParseError::InvalidMovement)?;
+        let from: usize = captures[2].parse().map_err(|_| ParseError::InvalidMovement)?;
+        let to: usize = captures[3].parse().map_err(|_| ParseError::InvalidMovement)?;
         Ok(Movement { count, from, to })
     }
 }

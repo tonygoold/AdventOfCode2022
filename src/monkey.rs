@@ -97,7 +97,7 @@ impl FromStr for Decision {
 
     // This should be three lines of text
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let mut parts = s.split("\n");
+        let mut parts = s.split('\n');
         let test_str = parts.next().ok_or(Self::Err::TestMatchFailed)?;
         let true_str = parts.next().ok_or(Self::Err::BranchMatchFailed)?;
         let false_str = parts.next().ok_or(Self::Err::BranchMatchFailed)?;
@@ -157,7 +157,7 @@ impl Monkey {
         self.inspections += 1;
         item = self.op.apply(item);
         if self.lcm != 0 {
-            item = item % self.lcm;
+            item %= self.lcm;
         }
         if self.reduces {
             item /= 3;
@@ -176,7 +176,7 @@ impl FromStr for Monkey {
 
     // This should be six lines of text
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let mut parts = s.split("\n");
+        let mut parts = s.split('\n');
         let monkey_str = parts.next().ok_or(Self::Err::MonkeyMatchFailed)?;
         let monkey_re = Regex::new(r"Monkey (\d+):")
             .expect("Failed to build regex");
@@ -235,7 +235,7 @@ impl FromStr for Monkeys {
     type Err = ParseError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let mut lines = s.split("\n");
+        let mut lines = s.split('\n');
         let mut monkeys: Vec<Monkey> = Vec::new();
         loop {
             let group: Vec<_> = (&mut lines).take(7).collect();
@@ -246,7 +246,7 @@ impl FromStr for Monkeys {
             monkeys.push(monkey);
         }
         let lcm_vals = monkeys.iter().map(|m| m.decision.div_by);
-        let lcm = lcm_vals.reduce(|x, y| lcm(x, y)).expect("Not enough monkeys");
+        let lcm = lcm_vals.reduce(lcm).expect("Not enough monkeys");
         for monkey in monkeys.iter_mut() {
             monkey.lcm = lcm;
         }
