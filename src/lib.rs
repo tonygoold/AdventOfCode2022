@@ -10,6 +10,7 @@ pub mod cpu;
 pub mod crane;
 pub mod grid;
 pub mod hill;
+pub mod inttree;
 pub mod monkey;
 pub mod point;
 pub mod rps;
