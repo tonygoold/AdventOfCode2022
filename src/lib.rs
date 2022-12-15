@@ -4,6 +4,7 @@ use std::io::{BufRead, BufReader};
 
 pub mod algo;
 pub mod assignment;
+pub mod cave;
 pub mod cli;
 pub mod comms;
 pub mod cpu;
